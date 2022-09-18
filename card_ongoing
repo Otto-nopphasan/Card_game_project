@@ -1,0 +1,109 @@
+import itertools, random
+from re import A
+from secrets import randbelow
+
+deck = list(itertools.product(range(1,14), ['Spade','Heart','Diamond','Club']))
+random.shuffle(deck)
+player1 = []
+player2 = []
+player3 = []
+player4 = []
+player = [player1, player2, player3, player4]
+# print(deck)
+
+# t = 52/int(input())
+t = 13;
+# print("player = 4!!")
+for x in range(int(t)):
+    x = x * 4;
+    player1.append(deck[x + 0])
+    player2.append(deck[x + 1])
+    player3.append(deck[x + 2])
+    player4.append(deck[x + 3])
+
+player1.sort()
+player2.sort()
+player3.sort()
+player4.sort()
+# print(player1)
+
+
+
+def find_1():
+    for i in range(len(player)):
+        # print(player[i][0][0])
+        if player[i][0][0] == 1 and player[i][0][1] == 'Club':
+            y = i
+    return y
+
+def s_card(num_c, player, last):
+    
+
+def play(peop, pable):
+    num_p = [1, 2, 3, 4]
+    pas = 0
+    print('player ', num_p[peop], 'start, play? 1 / 2 card')
+    print(pable[peop])
+    start = int(input())
+    print(pable[peop][0])
+    pable[peop].pop(0)
+    if start == 2:
+        print('pick other card ')
+        print(pable[peop])
+        new_c = int(input())
+        print(pable[peop][new_c])
+        pable[peop].pop(new_c)
+    peop = peop + 1
+    print('===============================')
+    while True:
+        print('player', num_p[peop], '1(play) / 2(pass)')
+        print(pable[peop])
+        inp = int(input())
+        if inp == 1:
+            print('pick a card ')
+            print(pable[peop])
+            new_c = int(input())
+            print(pable[peop][new_c])
+            pable[peop].pop(new_c)
+            if start == 2:
+                print('pick other card ')
+                print(pable[peop])
+                new_c = int(input())
+                pable[peop].pop(new_c)
+            peop = peop + 1
+        else:
+            print('pass')
+            pable.pop(peop)
+            num_p.pop(peop)
+            pas = pas + 1
+        if len(pable) == 1:
+            break
+        if peop >= 4 - pas:
+            peop = 0
+        print('===============================')
+    cur_player = num_p[peop]
+    print('end!! player ', num_p[peop], 'win')
+    print('===============================')
+            
+
+start = True
+cur_player = find_1()
+playable = [player1, player2, player3, player4]
+while start:
+    play(cur_player, playable)
+    playable = [player1, player2, player3, player4]
+
+
+# def change(x):
+#     x.sort()
+#     for i in range(len(x)):
+#         if x[i][0] == 1:
+#             x[i][0] = 'A'
+#         elif x[i][0] == 11:
+#             x[i][0] = 'J'
+#         elif x[i][0] == 12:
+#             x[i][0] = 'Q'
+#         elif x[i][0] == 13:
+#             x[i][0] = 'K'
+#     return x;
+
